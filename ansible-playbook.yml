@@ -1,0 +1,40 @@
+---
+
+# tasks file for ansible-dockerized-wordpress
+- hosts: all
+  tasks:
+  - name: "Clone repo"
+    git:
+      repo: https://github.com/docker/getting-started.git
+      dest: ./getting-started
+      version: master
+
+  - name: "Create database volume"
+    docker_volume:
+      volume_name: todo-mysql-data
+
+  - name: "Launch database container"
+    docker_container:
+      name: mysql
+      image: mysql:5.7
+      env:
+        MYSQL_ROOT_PASSWORD: secret
+        MYSQL_DATABASE: todos
+      volumes: "todo-mysql-data:/var/lib/mysql"
+
+  - name: "Launch nodejs app container"
+    docker_container:
+      name: app
+      image: node:12-alpine
+      working_dir: /app
+      volumes: "./getting-started/app:/app"
+      env:
+        MYSQL_HOST: mysql
+        MYSQL_USER: root
+        MYSQL_PASSWORD: secret
+        MYSQL_DB: todos
+      links:
+      - mysql:mysql
+      ports:
+      - 80:3000
+      command: sh -c "yarn install && yarn run dev"
