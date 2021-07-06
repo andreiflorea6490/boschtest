@@ -9,7 +9,8 @@
 ## Ansible configuration
 #### - Set the host you are deploying to in the ansible-inventory.yml file in the <'hostname or ip address of host'> field.
 #### - Set the password to connect via SSH in the same file in the <'ssh password'> field.
-#### - Encrypt the ansible-inventory.yml file: ansible-vault encrypt ansible-inventory.yml
+#### - Encrypt the ansible-inventory.yml file using the command: ansible-vault encrypt ansible-inventory.yml (set a password for the vault)
+#### - Run the ansible playbook via the command: ansible-playbook -i ansible-inventory.yml --ask-vault-pass ansible-playbook.yml (use the password created above)
 #
 ## How the app runs
 #### The code is pulled and the yarn package manager runs against the specified packages.json file.
