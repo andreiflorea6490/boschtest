@@ -2,7 +2,7 @@
 
 ## Prerequisites
 #### 1. The host you're going to perform the deployment from needs to have ansible installed.
-#### 2. The host you are deploying to needs to have docker installed and the python interpreter for docker configured (pip/pip3 install docker).
+#### 2. The host you are deploying to needs to have docker installed and the python interpreter for docker and docker-compose configured (pip/pip3 install docker, pip/pip3 install docker-compose).
 #### 3. You need a user on the host you are deploying to with access to docker.
 #### 4. Password authentication enabled on the host.
 #
