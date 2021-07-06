@@ -1,0 +1,8 @@
+all:
+  hosts:
+    <'hostname or ip address of host'>:
+      httpPort: 80
+      ansible_connection: ssh
+      ansible_user: ansible
+      ansible_ssh_pass: <'ssh password'>
+      ansible_python_interpreter: /usr/bin/python
